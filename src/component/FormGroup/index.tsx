@@ -10,9 +10,6 @@ const FormGroup: FC<IFormProps> = ({
   inputValues,
   setInputValues,
 }) => {
-  const companiesList: [] = useSelector(
-    (state: { conpanies: [] }) => state.conpanies
-  );
   const dispatch: any = useDispatch();
   const { id, name, prefix_url, secret, key } = inputValues.data;
 
