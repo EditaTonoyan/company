@@ -1,7 +1,10 @@
-import React, { FC } from "react";
-import "antd/dist/antd.css";
+import { FC } from "react";
 import { Modal } from "antd";
+
+import "antd/dist/antd.css";
+
 import { IModalProps } from "./types";
+
 import FormGroup from "../FormGroup";
 
 const MoadlGroup: FC<IModalProps> = ({

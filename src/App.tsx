@@ -4,8 +4,6 @@ import { LoginForm, CompanyList } from "./containers";
 import { Route, Routes } from "react-router-dom";
 
 const App = () => {
-  // const isAutenticated = localStorage.getItem("token");
-
   return (
     <div className="container">
       <Routes>

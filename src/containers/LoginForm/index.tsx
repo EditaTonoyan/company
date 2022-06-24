@@ -1,15 +1,10 @@
-import { useEffect } from "react";
 import "antd/dist/antd.css";
-import { useDispatch, useSelector } from "react-redux";
-import { Button, Checkbox, Form, Input } from "antd";
+import { Button, Form, Input } from "antd";
+import { useNavigate } from "react-router-dom";
+
 import { setToken } from "../../store/actions/CompanyActions";
-import { useNavigate, Link } from "react-router-dom";
-import { AppDispatch } from "../..";
 
 const LoginForm = () => {
-  const dispatch: AppDispatch = useDispatch();
-  const isAutenticated = localStorage.getItem("token");
-
   const navigate = useNavigate();
 
   const onFinish = (values: string) => {
@@ -29,7 +24,6 @@ const LoginForm = () => {
         remember: true,
       }}
       onFinish={onFinish}
-      //   onFinishFailed={onFinishFailed}
       autoComplete="off"
     >
       <Form.Item
@@ -64,11 +58,9 @@ const LoginForm = () => {
           span: 16,
         }}
       >
-        {/* <Link to="/"> */}
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
-        {/* </Link> */}
       </Form.Item>
     </Form>
   );

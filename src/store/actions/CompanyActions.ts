@@ -1,4 +1,4 @@
-import { Dispatch } from "redux";
+import { AnyAction, Dispatch } from "redux";
 import { AxiosInstance } from "../../utils/AxiosInstance";
 import authHeader from "../../utils/authHeader";
 import { CompanyActionEnum } from "../types";
@@ -67,12 +67,11 @@ export const deleteCompany =
     }
   };
 
-export const updateCompany =
-  (id: number | null, params: {}) => async (dispatch: Dispatch) => {
-    try {
-      AxiosInstance.defaults.headers.common["Authorization"] = authHeader();
-      await AxiosInstance.put(`owner/companies/ ${id}`, params);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export const updateCompany = (id: number | null, params: {}) => async () => {
+  try {
+    AxiosInstance.defaults.headers.common["Authorization"] = authHeader();
+    await AxiosInstance.put(`owner/companies/ ${id}`, params);
+  } catch (error) {
+    console.log(error);
+  }
+};

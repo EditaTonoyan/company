@@ -1,8 +1,11 @@
-import React, { FC } from "react";
-import "antd/dist/antd.css";
-import { useDispatch, useSelector } from "react-redux";
+import { FC } from "react";
+import { useDispatch } from "react-redux";
 import { Button, Form, Input } from "antd";
+
+import "antd/dist/antd.css";
+
 import { IFormProps } from "./types";
+
 import { addCompany, updateCompany } from "../../store/actions/CompanyActions";
 
 const FormGroup: FC<IFormProps> = ({
