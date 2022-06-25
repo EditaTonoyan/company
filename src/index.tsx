@@ -16,11 +16,12 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(thunk))
 );
 
-export type AppDispatch = typeof store.dispatch;
+// export type AppDispatch = typeof store.dispatch;
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <Provider store={store}>
     <BrowserRouter>

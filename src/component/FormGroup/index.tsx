@@ -17,6 +17,7 @@ const FormGroup: FC<IFormProps> = ({
     (state: { conpanies: [] }) => state.conpanies
   );
   const dispatch: any = useDispatch();
+
   const { id, name, prefix_url, secret, key } = inputValues.data;
 
   const onFinish = (values: {}) => {

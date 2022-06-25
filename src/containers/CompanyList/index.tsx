@@ -30,8 +30,6 @@ const CompanyList = () => {
     },
   });
 
-  const [deleted, setDeleted] = useState(false);
-
   const companiesList: [] = useSelector(
     (state: { conpanies: [] }) => state.conpanies
   );
@@ -44,12 +42,14 @@ const CompanyList = () => {
 
   useEffect(() => {
     !isAutenticated && navigate("/login");
+  }, []);
+
+  useEffect(() => {
     dispatch(setCompanies());
-  }, [dispatch, isAutenticated, navigate, deleted, isModalVisible]);
+  }, [companiesList, isModalVisible]);
 
   const deleteComp = (id: number) => {
     dispatch(deleteCompany(id, companiesList));
-    setDeleted(!deleted);
   };
 
   const updateData = (id: number) => {
