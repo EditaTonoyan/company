@@ -22,6 +22,12 @@ export const CompanyReducer = (state = initialState, action: CompanyAction) => {
         ...state,
         companies: action.payload,
       };
+
+    case CompanyActionEnum.UPDATE_DATA:
+      return {
+        ...state,
+        companies: action.payload,
+      };
     default:
       return state;
   }

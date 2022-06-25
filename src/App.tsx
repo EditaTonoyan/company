@@ -1,5 +1,3 @@
-import React from "react";
-import "./App.css";
 import { LoginForm, CompanyList } from "./containers";
 import { Route, Routes } from "react-router-dom";
 

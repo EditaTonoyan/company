@@ -1,4 +1,4 @@
-import { AnyAction, Dispatch } from "redux";
+import { Dispatch } from "redux";
 import { AxiosInstance } from "../../utils/AxiosInstance";
 import authHeader from "../../utils/authHeader";
 import { CompanyActionEnum } from "../types";
@@ -29,8 +29,8 @@ export const setCompanies = () => async (dispatch: Dispatch) => {
       type: CompanyActionEnum.SET_DATA,
       payload: data?.data,
     });
-  } catch (error: any) {
-    console.log(error.response.data);
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -42,8 +42,8 @@ export const addCompany = (params: {}) => async (dispatch: Dispatch) => {
       type: CompanyActionEnum.ADD_DATA,
       payload: data?.data,
     });
-  } catch (error: any) {
-    console.log(error.response.data.error.prefix_url);
+  } catch (error) {
+    console.log(error);
   }
 };
 
@@ -67,11 +67,27 @@ export const deleteCompany =
     }
   };
 
-export const updateCompany = (id: number | null, params: {}) => async () => {
-  try {
-    AxiosInstance.defaults.headers.common["Authorization"] = authHeader();
-    await AxiosInstance.put(`owner/companies/ ${id}`, params);
-  } catch (error) {
-    console.log(error);
-  }
-};
+export const updateCompany =
+  (id: number | null, params: {}, companiesList: []) =>
+  async (dispatch: Dispatch) => {
+    try {
+      AxiosInstance.defaults.headers.common["Authorization"] = authHeader();
+      const { data } = await AxiosInstance.put(
+        `owner/companies/ ${id}`,
+        params
+      );
+
+      const dataIndex = companiesList.findIndex(
+        (item: { id: number }) => item.id == data.data.id
+      );
+
+      companiesList.splice(dataIndex, 1, data.data as never);
+
+      dispatch({
+        type: CompanyActionEnum.UPDATE_DATA,
+        payload: companiesList,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };

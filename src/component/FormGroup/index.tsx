@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, Form, Input } from "antd";
 
 import "antd/dist/antd.css";
@@ -13,12 +13,15 @@ const FormGroup: FC<IFormProps> = ({
   inputValues,
   setInputValues,
 }) => {
+  const companiesList: [] = useSelector(
+    (state: { conpanies: [] }) => state.conpanies
+  );
   const dispatch: any = useDispatch();
   const { id, name, prefix_url, secret, key } = inputValues.data;
 
   const onFinish = (values: {}) => {
     if (inputValues.data.name != "") {
-      dispatch(updateCompany(id, values));
+      dispatch(updateCompany(id, values, companiesList));
     } else {
       dispatch(addCompany(values));
     }
